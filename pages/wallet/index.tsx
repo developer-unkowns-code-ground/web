@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Wallet = () => {
   return (
     <section className="max-w-1/100 mx-auto pt-4 px-4">
@@ -12,10 +14,12 @@ const Wallet = () => {
       </div>
 
       <div className="mt-20">
-        <button className="w-full bg-gray-100 py-8">
-          <span>+</span>
-          <p>Add Wallet</p>
-        </button>
+        <Link href="/wallet/create">
+          <button className="rounded-2xl w-full bg-gray-100 py-8">
+            <span>+</span>
+            <p>Add Wallet</p>
+          </button>
+        </Link>
       </div>
     </section>
   );
