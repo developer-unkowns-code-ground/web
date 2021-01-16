@@ -16,6 +16,8 @@ const GET_DOGS = gql`
 
 interface Wallet {
   id: number
+  name: string
+  amount: number
 }
 
 interface Result {
@@ -46,11 +48,40 @@ const Wallet = ({ token }) => {
         </div>
       ) : null}
 
+      { !hasWallet ? (
       <div className="text-center mt-20">
         <p className="text-2xl font-bold">You Don’t have any wallet</p>
         <p className="text-sm">Create one to track your expenses</p>
         <p className="text-sm">Total {data?.GetMyWallet.length}</p>
       </div>
+      ) : null }
+
+      { hasWallet ? (
+        <div className="mt-4 overflow-y-auto h-80">
+        {
+          data?.GetMyWallet.map((v: Wallet) => (
+            <div
+              key={v.id}
+              className="shadow rounded-xl w-full py-4 px-4 flex flex-col justify-between h-36 mb-4">
+              <div className="flex justify-between">
+                <div className="align-middle">
+                  <img
+                    className="h-full"
+                    width="40px" height="40px" src="https://bibit.id/img/logoBibitFix.svg" />
+                </div>
+                <div className="flex flex-col text-right">
+                  <span className="text-xs text-gray-300">Wallet Name</span>
+                  <span className="text-sm">{v.name}</span>
+                </div>
+              </div>
+              <div>
+                <span className="text-xl">{v.amount}</span>
+              </div>
+            </div>
+          ))
+        }
+        </div>
+      ) : null }
 
       <div className="mt-20">
         <Link href="/wallet/create">
