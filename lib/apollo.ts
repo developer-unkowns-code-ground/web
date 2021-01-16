@@ -1,19 +1,29 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { HttpLink } from 'apollo-link-http';
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 
-export default function createApolloClient() {
-    // const ssrMode = typeof window === 'undefined'
-    // let link
-    // if (ssrMode) {
-    //   link = createHttpLink(headers) // executed on server
-    // } else {
-    //   link = createWSLink() // executed on client
-    // }
+const httpLink = createHttpLink({
+  uri: 'https://bobot.nias.dev/query',
+  // uri: 'http://localhost:8000/query',
+});
+
+const authLink = (token) => setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
+
+
+export default function createApolloClient(token: string) {
+  // const ssrMode = typeof window === 'undefined';
+    let au = authLink(token);
     return new ApolloClient({
-    //   ssrMode,
-    //   link,
-      uri: 'https://bobot.nias.dev/query',
+    link: au.concat(httpLink),
       cache: new InMemoryCache()
     })
 };

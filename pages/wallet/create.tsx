@@ -1,4 +1,6 @@
+import { NextPageContext } from "next";
 import Link from "next/link";
+import { withAuthServerProps } from '../../lib/withAuth';
 
 const CreateWallet = () => {
   return (
@@ -11,13 +13,12 @@ const CreateWallet = () => {
       </div>
       <div className="flex h-5/6 flex-col justify-between">
         <div className="w-full">
-          <p>Form</p>
           <form className="flex flex-col">
             <div className="py-2">
-              <input placeholder="Initial Balance" className="w-full" />
+              <input placeholder="Initial Balance" type="number" className="w-full p-2" />
             </div>
             <div className="py-2">
-              <input placeholder="Wallet Name" className="w-full" />
+              <input placeholder="Wallet Name" className="w-full p-2" />
             </div>
           </form>
         </div>
@@ -28,5 +29,7 @@ const CreateWallet = () => {
     </section>
   );
 };
+
+export const getServerSideProps = (ctx: NextPageContext) => withAuthServerProps(ctx);
 
 export default CreateWallet;
