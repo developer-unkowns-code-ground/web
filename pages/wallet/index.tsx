@@ -14,9 +14,25 @@ const GET_DOGS = gql`
   }
 `;
 
+interface Wallet {
+  id: number
+}
+
+interface Result {
+  GetMyWallet: Array<Wallet>
+}
+interface Query {
+  data?: Result | undefined
+  loading?: any
+  error?: any
+}
+
 
 const Wallet = ({ token }) => {
-  const { loading, error, data } = useQuery(GET_DOGS);
+  const { loading, error, data } : Query = useQuery(GET_DOGS);
+
+  let hasWallet = data?.GetMyWallet.length > 0;
+  console.log(data);
   return (
     <section className="max-w-1/100 mx-auto pt-4 px-4">
       <div className="flex justify-between">
@@ -24,9 +40,16 @@ const Wallet = ({ token }) => {
         <button className="font-bold text-red-600">Log out</button>
       </div>
 
+      { hasWallet ? (
+        <div className="mt-4">
+          <p className="text-sm w-2/3">Tap your wallet to see your expenses and add your expenses</p>
+        </div>
+      ) : null}
+
       <div className="text-center mt-20">
         <p className="text-2xl font-bold">You Don’t have any wallet</p>
         <p className="text-sm">Create one to track your expenses</p>
+        <p className="text-sm">Total {data?.GetMyWallet.length}</p>
       </div>
 
       <div className="mt-20">
