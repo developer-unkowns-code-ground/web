@@ -15,7 +15,7 @@ const CreateWallet = () => {
         <div className="w-full">
           <form className="flex flex-col">
             <div className="py-2">
-              <input placeholder="Initial Balance" type="number" className="w-full p-2" />
+              <input placeholder="Initial Balance" type="text" inputMode="numeric"  className="w-full p-2" />
             </div>
             <div className="py-2">
               <input placeholder="Wallet Name" className="w-full p-2" />
