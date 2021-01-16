@@ -4,7 +4,6 @@ import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
   uri: 'https://bobot.nias.dev/query',
-  // uri: 'http://localhost:8000/query',
 });
 
 const authLink = (token) => setContext((_, { headers }) => {

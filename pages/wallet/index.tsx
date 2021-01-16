@@ -1,6 +1,6 @@
 import { NextApiHandler, NextPage, NextPageContext } from 'next';
 import Link from 'next/link';
-import withAuth, { withAuthServerProps } from '../../lib/withAuth';
+import { withAuthServerProps } from '../../lib/withAuth';
 
 import { gql, useQuery } from '@apollo/client';
 

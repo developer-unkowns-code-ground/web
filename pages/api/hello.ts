@@ -11,7 +11,7 @@ export default async (req :NextApiRequest, res: NextApiResponse) => {
     res.statusCode = 400;
     let token = req.body?.token ?? '';
     try {
-      let gqlClient =  await client().mutate({
+      let gqlClient =  await client('').mutate({
         mutation: gql`
           mutation Login($token: String!){
             login( login: { token: $token }) {
