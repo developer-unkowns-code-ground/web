@@ -1,10 +1,11 @@
 import React from "react";
+import { Section } from "./homePageStyle";
 
 const homePage = () => {
   return (
-    <div>
+    <Section>
       home
-    </div>
+    </Section>
   );
 };
 
