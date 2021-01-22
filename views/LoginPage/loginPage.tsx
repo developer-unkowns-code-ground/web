@@ -1,7 +1,6 @@
 import React from "react";
 import { gql, useMutation } from "@apollo/client";
-import { GoogleLogin } from "react-google-login";
-import { ImageState } from "./loginPageStyle";
+import { Wrapper, HeaderContent, ImageState, Title, Description, ButtonGoogle } from "./loginPageStyle";
 import { lang } from "@/lang";
 
 const LOGIN = gql`
@@ -29,26 +28,20 @@ const Home = () => {
     console.log("Fail");
   };
   return (
-    <section className="max-w-1/100 mx-auto bg-red-600 h-screen px-4 py-20 flex flex-col justify-between">
-      <div className="">
-        <ImageState src="/images/state-login.png" alt="State login"/>
-      </div>
-      <div className="text-center text-white">
-        <p className="text-4xl font-bold">{lang("utility.name_app")}</p>
-        <p className="text-xl font-bold py-2">{lang("login.manage_your_expenses")}</p>
-      </div>
-      <div className="mx-auto w-full">
-        <GoogleLogin
-          className="w-full text-center"
+    <Wrapper>
+        <HeaderContent>
+          <ImageState src="/images/state-login.png" alt="State login"/>
+          <Title>{lang("utility.name_app")}</Title>
+          <Description>{lang("login.manage_your_expenses")}</Description>
+        </HeaderContent>
+        <ButtonGoogle
           clientId="1068092152608-lsuk4hmkrm6v60dmk5dsq0hng8grqk3t.apps.googleusercontent.com"
           buttonText="Continue with Google"
           onSuccess={responseGoogle}
           onFailure={onFailure}
           cookiePolicy={"single_host_origin"}
         />
-      </div>
-    </section>
-  );
-};
-
+    </Wrapper>
+    );
+  };
 export default Home;

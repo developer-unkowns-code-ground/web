@@ -21,6 +21,7 @@
     "paths": {
       "@/views/*": ["views/*"],
       "@/lang": ["services/translation"],
+      "@/colors": ["services/configs/colors"],
     }
   },
   "include": [
