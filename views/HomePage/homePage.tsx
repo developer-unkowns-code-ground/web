@@ -5,9 +5,9 @@ import { withAuthServerProps } from "@/lib/withAuth";
 
 const homePage = () => {
   return (
-    <Section>
+    <div>
       home
-    </Section>
+    </div>
   );
 };
 

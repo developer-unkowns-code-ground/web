@@ -32,7 +32,7 @@ const Home = () => {
       const res = await fetch("/api/hello", { method: "POST", headers, body: JSON.stringify(loginData)});
       await res.json();
       router.push("/");
-      
+
     } catch (error) {
       console.log(error);
     }

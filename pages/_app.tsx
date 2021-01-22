@@ -1,15 +1,28 @@
-import { ApolloProvider } from '@apollo/client';
-import client from '../lib/apollo';
+import React from "react";
+import { ApolloProvider } from "@apollo/client";
+import client from "../lib/apollo";
 import "tailwindcss/tailwind.css";
+import Container from "@/components/container";
 
-function MyApp({ Component, pageProps }) {
-  // console.log(pageProps);
-  let token = pageProps.token ?? '';
-  return (
-    <ApolloProvider client={client(token)}>
-      <Component {...pageProps} />
-    </ApolloProvider>
-  )
+
+interface AppModel{
+  Component: any;
+  pageProps: any;
 }
 
-export default MyApp
+const MyApp = ({ Component, pageProps } : AppModel) => {
+  const token = pageProps.token ?? "";
+  return (
+    <ApolloProvider client={client(token)}>
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+    </ApolloProvider>
+  );
+};
+
+MyApp.getServerSideProps = async (props: any) => {
+  return { props };
+};
+
+export default MyApp;

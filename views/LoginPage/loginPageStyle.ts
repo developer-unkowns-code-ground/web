@@ -4,16 +4,13 @@ import { GoogleLogin } from "react-google-login";
 
 export const Wrapper = styled.div`
   background: ${colors.primary};
-  max-width: 500px;
-  width: 100%;
-  margin: auto;
-  min-height: 100vh;
   padding: 80px 24px;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  height: 100vh;
 `;
 export const HeaderContent = styled.div`
   display: flex;
