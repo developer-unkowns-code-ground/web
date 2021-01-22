@@ -7,26 +7,26 @@ interface Ctx {
 }
 
 export const parseCookies = (request: IncomingMessage) => {
-  var list = {};
-  var rc = request.headers.cookie;
+  const list = {};
+  const rc = request.headers.cookie;
 
-  rc && rc.split(';').forEach(function( cookie ) {
-      var parts = cookie.split('=');
-      list[parts.shift().trim()] = decodeURI(parts.join('='));
+  rc && rc.split(";").forEach(function( cookie ) {
+      const parts = cookie.split("=");
+      list[parts.shift().trim()] = decodeURI(parts.join("="));
   });
 
   return list;
-}
+};
 
 export function withAuthServerProps(ctx: NextPageContext) {
   const { req } : Ctx = ctx;
-  let auth = '';
+  let auth = "";
   if (req !== undefined) {
-    auth = parseCookies(req)['auth'];
-    if (undefined === auth || auth === '') {
+    auth = parseCookies(req)["auth"];
+    if (undefined === auth || auth === "") {
       return {
         redirect: {
-          destination: '/',
+          destination: "/login",
           permanent: false,
         },
       };
