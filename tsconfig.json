@@ -20,6 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@/views/*": ["views/*"],
+      "@/components/*": ["components/*"],
       "@/lang": ["services/translation"],
       "@/colors": ["services/configs/colors"],
       "@/lib/*": ["lib/*"],
