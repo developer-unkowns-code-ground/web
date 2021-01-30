@@ -12,9 +12,7 @@ const loginPage = () => {
     try {
       const response = await apiAuth.login(tokenId);
       console.log(response.data.login);
-      localStorage.setItem("access_token", `{
-        accessToken: response.data.login.accessToken
-      }`);
+      localStorage.setItem("access_token", JSON.stringify({accessToken: response.data.login.accessToken}));
       router.push("/");
     } catch (error) {
       console.log(error);

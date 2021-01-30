@@ -6,8 +6,22 @@ import { lang } from "@/lang";
 import Navbar from "@/components/navbar";
 import useHomePage from "./useHomePage";
 import Link from "next/link";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_DOGS = gql`
+  query GetDogs {
+    GetMyWallet {
+      id
+      name
+      amount
+    }
+  }
+`;
 
 const homePage = () => {
+  const { loading, error, data } = useQuery(GET_DOGS);
+
+  console.log(data);
   const {logout} = useHomePage();
   return (
     <section className="text-center">
