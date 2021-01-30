@@ -1,8 +1,20 @@
 {
   "utility":{
-    "name_app": "BOBOT"
+    "name_app": "BOBOT",
+    "logout": "Logout",
+    "save" : "Save"
   },
   "login":{
     "manage_your_expenses": "Manage your expenses"
+  },
+  "home":{
+    "your_wallet": "Your Wallet",
+    "dont_have_wallet": "You Don’t have any wallet",
+    "create_your_track": "Create one to track your expenses",
+    "add_wallet": "Add Wallet"
+  },
+  "wallet":{
+    "initial_balance" : "Initial Balance",
+    "wallet_name" : "Wallet Name"
   }
 }
