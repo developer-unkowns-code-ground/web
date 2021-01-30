@@ -5,4 +5,6 @@ export const Container = styled.section`
   width: 100%;
   margin: auto;
   min-height: 100vh;
+  background: white;
+  padding: 24px;
 `;
