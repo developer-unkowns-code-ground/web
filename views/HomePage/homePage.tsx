@@ -3,6 +3,7 @@ import { NextPageContext } from "next";
 import { withAuthServerProps } from "@/lib/withAuth";
 import { BtnLogout, ImgWallet,Caption, Description, ButtonAddWallet } from "./homePageStyle";
 import { lang } from "@/lang";
+import { authLink, httpLink } from "@/lib/apollo";
 import Navbar from "@/components/navbar";
 import useHomePage from "./useHomePage";
 import Link from "next/link";
@@ -18,8 +19,20 @@ const GET_DOGS = gql`
   }
 `;
 
+interface Wallet {
+  id: number
+  name: string
+  amount: number
+}
+interface Data {
+  data: {
+    GetMyWallet: Array<Wallet>
+  }
+}
+
 const homePage = () => {
-  const { loading, error, data } = useQuery(GET_DOGS);
+
+  const { loading, error, data } = useQuery<Data>(GET_DOGS);
 
   console.log(data);
   const {logout} = useHomePage();

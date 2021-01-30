@@ -2,11 +2,11 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
 
-const httpLink = createHttpLink({
+export const httpLink = createHttpLink({
   uri: "https://bobot.nias.dev/query",
 });
 
-const authLink = (token) => setContext((_, { headers }) => {
+export const authLink = (token) => setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   // return the headers to the context so httpLink can read them
   return {
@@ -22,7 +22,7 @@ export default function createApolloClient(token: string) {
   // const ssrMode = typeof window === 'undefined';
     const au = authLink(token);
     return new ApolloClient({
-    link: au.concat(httpLink),
+      link: au.concat(httpLink),
       cache: new InMemoryCache()
     });
 }
