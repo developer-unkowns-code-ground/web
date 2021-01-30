@@ -1,48 +1,31 @@
 import React from "react";
-import { gql, useMutation } from "@apollo/client";
 import { Wrapper, HeaderContent, ImageState, Title, Description, ButtonGoogle } from "./loginPageStyle";
 import { lang } from "@/lang";
 import { useRouter } from "next/router";
+import apiAuth from "@/api/auth";
 
-const LOGIN = gql`
-  mutation Login($token: String!){
-    login( login: { token: $token }) {
-      accessToken
-    }
-  }
-`;
-
-const Home = () => {
+const loginPage = () => {
   const router = useRouter();
   const clientId = "1068092152608-9i7o596ur7ripl1fi4tcrrvmgilu7h3c.apps.googleusercontent.com";
-  const [login, { data }] = useMutation(LOGIN);
-  // console.log(login);
   const responseGoogle = async (response) => {
-
     const tokenId = response.tokenId;
-    const headers = {
-      "content-type": "application/json",
-    };
-
-    const loginData = {
-      "token": tokenId
-    };
-
     try {
-      const res = await fetch("/api/hello", { method: "POST", headers, body: JSON.stringify(loginData)});
-      await res.json();
+      const response = await apiAuth.login(tokenId);
+      console.log(response.data.login);
+      localStorage.setItem("access_token", `{
+        accessToken: response.data.login.accessToken
+      }`);
       router.push("/");
-
     } catch (error) {
       console.log(error);
     }
   };
 
-
   const onFailure = (response) => {
     console.log(response);
     console.log("Fail");
   };
+
   return (
     <Wrapper>
         <HeaderContent>
@@ -60,4 +43,4 @@ const Home = () => {
     </Wrapper>
     );
   };
-export default Home;
+export default loginPage;

@@ -22,6 +22,8 @@
       "@/views/*": ["views/*"],
       "@/components/*": ["components/*"],
       "@/lang": ["services/translation"],
+      "@/api/*": ["services/api/*"],
+      "@/middleware": ["services/configs/middleware"],
       "@/colors": ["services/configs/colors"],
       "@/lib/*": ["lib/*"],
     },
