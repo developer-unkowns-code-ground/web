@@ -15,13 +15,19 @@ interface AppModel{
   pageProps: any;
 }
 
+interface Token {
+  accessToken: string;
+}
+
 const MyApp = ({ Component, pageProps } : AppModel) => {
   const httpLink = createHttpLink({
     uri: publicRuntimeConfig.apiUrl,
   });
-  
+
   const authLink = setContext((_, { headers }) => {
-    const token: any = localStorage.getItem("access_token");
+    const tokenString: any = localStorage.getItem("access_token");
+    const token : Token = JSON.parse(tokenString);
+    console.log(token);
     return {
       headers: {
         ...headers,
@@ -29,7 +35,7 @@ const MyApp = ({ Component, pageProps } : AppModel) => {
       }
     };
   });
-  
+
   const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache()
