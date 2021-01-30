@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import client from "../lib/apollo";
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
@@ -15,10 +16,23 @@ interface AppModel{
 }
 
 const MyApp = ({ Component, pageProps } : AppModel) => {
-  // const token = pageProps.token ?? "";
+  const httpLink = createHttpLink({
+    uri: publicRuntimeConfig.apiUrl,
+  });
+  
+  const authLink = setContext((_, { headers }) => {
+    const token: any = localStorage.getItem("access_token");
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token.accessToken}` : "",
+      }
+    };
+  });
+  
   const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    uri: publicRuntimeConfig.apiUrl
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache()
   });
 
   useEffect(() => {
