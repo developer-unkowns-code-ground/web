@@ -1,15 +1,14 @@
 import React, { FC } from "react";
 import { Button } from "./buttonComponentStyle";
 
-interface ButtonModel{
+interface ButtonModel extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   variant?: string;
   disabled?: boolean;
 }
 
-const  buttonComponent : FC<ButtonModel> = (props) => {
-  const { children, disabled } = props;
+const  buttonComponent  = ({children, disabled, ...props}: ButtonModel) => {
   return (
-    <Button disabled={disabled}>
+    <Button disabled={disabled} {...props}>
       {children}
     </Button>
   );

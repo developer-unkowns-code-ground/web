@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import NumberFormat from 'react-number-format';
-import Navbar from "@/components/navbar";
-import Button from "@/components/button";
+import { Navbar, Button } from "@/components/index";
 import { lang } from "@/lang";
 import { Section } from "./walletAddStyle";
+import useWalletAdd from './useWalletAdd';
 
 const walletAdd = () => {
-  const [balance, setBalance] = useState<number>();
-  const [nameWallet, setNameWallet] = useState("");
+  const { createWallet, balance, setBalance, nameWallet, setNameWallet } = useWalletAdd();
 
   return (
     <>
@@ -24,7 +23,7 @@ const walletAdd = () => {
             />
           <input value={nameWallet} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNameWallet(e.target.value)} className="mt-6" placeholder={lang("wallet.wallet_name")} />
         </div>
-        <Button disabled={!balance || !nameWallet}>{lang("utility.save")}</Button>
+        <Button disabled={!balance || !nameWallet} onClick={createWallet}>{lang("utility.save")}</Button>
       </Section>
     </>
   );

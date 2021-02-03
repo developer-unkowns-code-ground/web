@@ -33,7 +33,6 @@ export default async (req :NextApiRequest, res: NextApiResponse) => {
 
       res.json({ accessToken });
     } catch (error) {
-      console.log(error);
       res.json({});
     }
 

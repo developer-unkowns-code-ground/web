@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import client from "../lib/apollo";
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import Container from "@/components/container";
@@ -27,7 +26,6 @@ const MyApp = ({ Component, pageProps } : AppModel) => {
   const authLink = setContext((_, { headers }) => {
     const tokenString: any = localStorage.getItem("access_token");
     const token : Token = JSON.parse(tokenString);
-    console.log(token);
     return {
       headers: {
         ...headers,
@@ -44,17 +42,18 @@ const MyApp = ({ Component, pageProps } : AppModel) => {
   useEffect(() => {
     checkRouter();
   },[]);
+
   return (
     <>
-    <Head>
-      <title>Bobot</title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <ApolloProvider client={client}>
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    </ApolloProvider>
+      <Head>
+        <title>Bobot</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <ApolloProvider client={client}>
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+      </ApolloProvider>
     </>
   );
 };

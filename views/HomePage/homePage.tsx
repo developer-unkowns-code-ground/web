@@ -4,26 +4,7 @@ import { lang } from "@/lang";
 import { Navbar, CardWallet } from "@/components/index";
 import useHomePage from "./useHomePage";
 import Link from "next/link";
-import { gql, useQuery } from "@apollo/client";
 
-const GET_DOGS = gql`
-  query GetDogs {
-    GetMyWallet {
-      id
-      name
-      amount
-    }
-  }
-`;
-
-interface Wallet {
-  id: number
-  name: string
-  amount: number
-}
-interface Data {
-  GetMyWallet: Array<Wallet>
-}
 const EmptyState = memo(() => {
   return(
     <div>
@@ -35,11 +16,8 @@ const EmptyState = memo(() => {
 });
 
 const homePage = () => {
+  const {logout, data} = useHomePage();
 
-  const { loading, error, data } = useQuery<Data>(GET_DOGS);
-
-  console.log(data?.GetMyWallet)
-  const {logout} = useHomePage();
   return (
     <>
       <Navbar title={lang("home.your_wallet")}>
