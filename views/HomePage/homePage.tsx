@@ -1,10 +1,7 @@
-import React from "react";
-import { NextPageContext } from "next";
-import { withAuthServerProps } from "@/lib/withAuth";
-import { BtnLogout, ImgWallet,Caption, Description, ButtonAddWallet } from "./homePageStyle";
+import React, { memo } from "react";
+import { BtnLogout, ImgWallet,Caption, Description, ButtonAddWallet, Content } from "./homePageStyle";
 import { lang } from "@/lang";
-import { authLink, httpLink } from "@/lib/apollo";
-import Navbar from "@/components/navbar";
+import { Navbar, CardWallet } from "@/components/index";
 import useHomePage from "./useHomePage";
 import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
@@ -25,35 +22,43 @@ interface Wallet {
   amount: number
 }
 interface Data {
-  data: {
-    GetMyWallet: Array<Wallet>
-  }
+  GetMyWallet: Array<Wallet>
 }
+const EmptyState = memo(() => {
+  return(
+    <div>
+      <ImgWallet src="/images/wallet.png" alt="Wallet"/>
+      <Caption>{lang("home.dont_have_wallet")}</Caption>
+      <Description>{lang("home.create_your_track")}</Description>
+    </div>
+  );
+});
 
 const homePage = () => {
 
   const { loading, error, data } = useQuery<Data>(GET_DOGS);
 
-  console.log(data);
+  console.log(data?.GetMyWallet)
   const {logout} = useHomePage();
   return (
-    <section className="text-center">
+    <>
       <Navbar title={lang("home.your_wallet")}>
         <BtnLogout onClick={logout}>{lang("utility.logout")}</BtnLogout>
       </Navbar>
-      <ImgWallet src="/images/wallet.png" alt="Wallet"/>
-      <Caption>{lang("home.dont_have_wallet")}</Caption>
-      <Description>{lang("home.create_your_track")}</Description>
-      <Link href="/wallet/add">
-        <ButtonAddWallet>
-          <div>+</div>
-          {lang("home.add_wallet")}
-        </ButtonAddWallet>
-      </Link>
-    </section>
+      <Content>
+        {
+          data?.GetMyWallet.map((wallet, key) => <CardWallet wallet={wallet} key={key} />)
+        }
+        {!data?.GetMyWallet && <EmptyState />}
+        <Link href="/wallet/add">
+          <ButtonAddWallet>
+            <div>+</div>
+            {lang("home.add_wallet")}
+          </ButtonAddWallet>
+        </Link>
+      </Content>
+    </>
   );
 };
-
-export const getServerSideProps = (ctx: NextPageContext) => withAuthServerProps(ctx);
 
 export default homePage;

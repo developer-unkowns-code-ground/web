@@ -6,5 +6,4 @@ export const Container = styled.section`
   margin: auto;
   min-height: 100vh;
   background: white;
-  padding: 24px;
 `;

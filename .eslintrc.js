@@ -24,6 +24,7 @@ module.exports = {
     rules: {
         semi: ["error", "always"],
         quotes: ["error", "double"],
-        "@typescript-eslint/explicit-module-boundary-types": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "react/display-name": [<enabled>, { "ignoreTranspilerName": <boolean> }]
     }
 };

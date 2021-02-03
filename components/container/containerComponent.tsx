@@ -9,4 +9,5 @@ const wrapperComponent: FC =({children})  => {
   );
 };
 
+export { wrapperComponent as Container };
 export default wrapperComponent;

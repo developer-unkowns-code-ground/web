@@ -21,6 +21,7 @@
     "paths": {
       "@/views/*": ["views/*"],
       "@/components/*": ["components/*"],
+      "@/helpers/*": ["helpers/*"],
       "@/lang": ["services/translation"],
       "@/api/*": ["services/api/*"],
       "@/middleware": ["services/configs/middleware"],

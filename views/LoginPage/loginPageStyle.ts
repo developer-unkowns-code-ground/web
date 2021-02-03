@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  margin: -24px;
 `;
 export const HeaderContent = styled.div`
   display: flex;

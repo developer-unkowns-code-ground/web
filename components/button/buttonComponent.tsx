@@ -15,4 +15,5 @@ const  buttonComponent : FC<ButtonModel> = (props) => {
   );
 };
 
+export {buttonComponent as Button};
 export default buttonComponent;

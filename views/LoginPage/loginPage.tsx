@@ -3,11 +3,12 @@ import { Wrapper, HeaderContent, ImageState, Title, Description, ButtonGoogle } 
 import { lang } from "@/lang";
 import { useRouter } from "next/router";
 import apiAuth from "@/api/auth";
+import { GoogleLoginResponse } from "react-google-login";
 
 const loginPage = () => {
   const router = useRouter();
   const clientId = "1068092152608-9i7o596ur7ripl1fi4tcrrvmgilu7h3c.apps.googleusercontent.com";
-  const responseGoogle = async (response) => {
+  const responseGoogle = async (response : GoogleLoginResponse) => {
     const tokenId = response.tokenId;
     try {
       const response = await apiAuth.login(tokenId);
