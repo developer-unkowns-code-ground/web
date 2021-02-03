@@ -22,7 +22,6 @@ const CreateWalletPage = () => {
   const [CreateWallet, { data }] = useMutation(ADD_TODO);
   const onSubmit = (v: Values) => {
     CreateWallet({ variables: { name: v.name, amount: v.initialAmount } });
-    console.log('submit', v);
   };
 
   return (

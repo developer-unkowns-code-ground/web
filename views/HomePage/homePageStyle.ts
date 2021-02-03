@@ -24,3 +24,7 @@ export const ButtonAddWallet = styled.button`
   border-radius: 16px;
   margin-top: 60px;
 `;
+export const Content = styled.div`
+  padding: 24px;
+  text-align: center;
+`;

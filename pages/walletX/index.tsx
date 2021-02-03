@@ -34,7 +34,6 @@ const Wallet = ({ token }) => {
   const { loading, error, data } : Query = useQuery(GET_DOGS);
 
   let hasWallet = data?.GetMyWallet.length > 0;
-  console.log(data);
   return (
     <section className="max-w-1/100 mx-auto pt-4 px-4">
       <div className="flex justify-between">
@@ -97,7 +96,6 @@ const Wallet = ({ token }) => {
 
 // Wallet.getServerSideProps = async (ctx: NextPageContext) => withAuth(ctx);
 // Wallet.getServerSideProps = async (ctx: NextPageContext) => {
-//   console.log('s');
 // }
 
 export const getServerSideProps = (ctx: NextPageContext) => withAuthServerProps(ctx);

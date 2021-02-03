@@ -14,4 +14,6 @@ export const Button = styled.button<ButtonModel>`
   height: 56px;
   color: white;
   border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
 `;

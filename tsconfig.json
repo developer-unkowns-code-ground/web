@@ -21,8 +21,10 @@
     "paths": {
       "@/views/*": ["views/*"],
       "@/components/*": ["components/*"],
+      "@/helpers/*": ["helpers/*"],
       "@/lang": ["services/translation"],
       "@/api/*": ["services/api/*"],
+      "@/services/*": ["services/*"],
       "@/middleware": ["services/configs/middleware"],
       "@/colors": ["services/configs/colors"],
       "@/lib/*": ["lib/*"],

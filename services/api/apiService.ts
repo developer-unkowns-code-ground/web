@@ -1,5 +1,5 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
 import getConfig from "next/config";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 const { publicRuntimeConfig } = getConfig();
 
 const apiService = () => {

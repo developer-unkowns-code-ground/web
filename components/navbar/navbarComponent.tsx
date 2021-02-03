@@ -7,7 +7,7 @@ interface NavbarModel{
   hasBack?: boolean;
 }
 
-const navbarComponent : FC<NavbarModel> = (props) => {
+export const Navbar : FC<NavbarModel> = (props) => {
   const router = useRouter();
   const { title, children, hasBack }= props;
   const back = useCallback(() => {
@@ -24,4 +24,4 @@ const navbarComponent : FC<NavbarModel> = (props) => {
   );
 };
 
-export default navbarComponent;
+export default Navbar;

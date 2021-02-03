@@ -4,7 +4,11 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
+  padding: 24px;
+  position: sticky;
+  top: 0;
+  background: white;
 `;
 export const Title = styled.h1`
   font-size: 24px;
