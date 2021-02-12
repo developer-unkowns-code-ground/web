@@ -29,10 +29,12 @@ const homePage = () => {
         }
         {!data?.GetMyWallet && <EmptyState />}
         <Link href="/wallet/add">
-          <ButtonAddWallet>
-            <div>+</div>
-            {lang("home.add_wallet")}
-          </ButtonAddWallet>
+          <a>
+            <ButtonAddWallet>
+              <div>+</div>
+              {lang("home.add_wallet")}
+            </ButtonAddWallet>
+          </a>
         </Link>
       </Content>
     </>

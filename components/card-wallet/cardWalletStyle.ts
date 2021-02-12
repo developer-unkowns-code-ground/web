@@ -5,9 +5,7 @@ export const WrapperWallet = styled.div`
   box-shadow: 0px 18px 80px rgba(0, 0, 0, 0.08), 0px 4.02054px 17.869px rgba(0, 0, 0, 0.0476886), 0px 1.19702px 5.32008px rgba(0, 0, 0, 0.0323114);
   border-radius: 16px;
   padding: 24px;
-  &:not(:last-child){
-    margin-bottom: 16px;
-  }
+  margin-bottom: 16px;
 `;
 export const HeaderWallet = styled.div`
   display: flex;

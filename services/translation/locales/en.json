@@ -15,6 +15,7 @@
   },
   "wallet":{
     "initial_balance" : "Initial Balance",
-    "wallet_name" : "Wallet Name"
+    "wallet_name" : "Wallet Name",
+    "daily_transaction" : "Daily Transaction"
   }
 }
