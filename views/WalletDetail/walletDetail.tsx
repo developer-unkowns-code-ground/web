@@ -9,10 +9,10 @@ import { useRouter } from 'next/router';
 const walletDetail = () => {
   const router = useRouter()
   const { id } = router.query
-  const { getDetail, data } = useWalletDetail(id);
+  const { getDetail, data } = useWalletDetail();
 
   useEffect(() => {
-    id && getDetail();
+    id && getDetail({variables: {id}});
   }, [id]);
 
   return (
