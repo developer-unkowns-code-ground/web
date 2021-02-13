@@ -16,6 +16,8 @@
   "wallet":{
     "initial_balance" : "Initial Balance",
     "wallet_name" : "Wallet Name",
-    "daily_transaction" : "Daily Transaction"
+    "daily_transaction" : "Daily Transaction",
+    "dont_have_transaction" : "You don't have any transaction",
+    "input_daily_transaction" : "Input your daily transaction"
   }
 }

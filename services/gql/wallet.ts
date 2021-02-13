@@ -25,3 +25,14 @@ export const CREATE_WALLET = gql`
     }
   }
 `;
+export const GET_TRANSACTION_WALLETID = gql`
+  query GetTransaction($id:Int64!){
+    GetTransactionByWalletId(id: $id){
+      id,
+      amount,
+      updatedAt,
+      createdAt,
+      walletId,
+    }
+  }
+`
